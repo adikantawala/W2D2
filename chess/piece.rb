@@ -1,7 +1,8 @@
 
 class Piece
 
-  def intialize
+  def intialize(start_pos, color, board)
+    @color
   end
 
   def inspect
@@ -10,7 +11,7 @@ class Piece
 end
 
 class NullPiece < Piece
-  # include Singleton 
+  # include Singleton
   def inspect
     "N"
   end

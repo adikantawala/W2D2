@@ -38,13 +38,13 @@ module SteppingPiece
       [x - 2, y - 1]
     ]
 
-    result.select { |move| valid_move?(move) }
+    result.select { |move| valid_move?(move, current_pos) }
   end
 
-  def valid_move?(move)
+  def valid_move?(move, current_pos)
     x, y = move
-    return true if x.between?(0, 7) && y.between?(0, 7)
-    false
+    return true if x.between?(0, 7) && y.between?(0, 7) && board[move].color != board[current_pos].color
+    return false
   end
 
 
