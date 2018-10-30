@@ -10,7 +10,7 @@ class Piece
 end
 
 class NullPiece < Piece
-
+  # include Singleton 
   def inspect
     "N"
   end

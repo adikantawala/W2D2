@@ -78,13 +78,13 @@ class Cursor
 
   def handle_key(key)
     case key
-    when " " || "\r"
+    when :space, :return
       return @cursor_pos
-    when "\e[A" || "\e[B" || "\e[C" || "\e[D"
-      diff = MOVES[KEYMAP[key]]
+    when :left, :right, :up, :down
+      diff = MOVES[key]
       update_pos(diff)
       nil
-    when "\u0003"
+    when :ctrl_c
       Process.exit
     end
   end
@@ -93,6 +93,8 @@ class Cursor
     row, col = @cursor_pos
     row = row + diff[0]
     col = col + diff[1]
+    temp = [row,col]
+    raise "not valid position" if !board.valid_pos?(temp)
     @cursor_pos = [row, col]
   end
 end

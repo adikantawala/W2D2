@@ -29,6 +29,14 @@ class Board
         row[i] = NULL
       end
     end
+
+  end
+
+  def valid_pos?(pos)
+    row, col = pos
+    return false if row > 7 || row < 0
+    return false if col > 7 || col  < 0
+    return true
   end
 
 
@@ -52,19 +60,6 @@ class Board
 
   def add_piece(piece, pos)
     self[pos] = piece
-  end
-
-  def render
-    @grid.each do |row|
-      p row.map do |el|
-        if el.class == NullPiece
-          "N"
-        else
-          "P"
-        end
-      end
-    end
-
   end
 
 
