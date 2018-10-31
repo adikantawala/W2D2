@@ -2,6 +2,8 @@ require "colorize"
 require 'byebug'
 require_relative "cursor.rb"
 require_relative "board.rb"
+require_relative "sliding_piece.rb"
+require_relative "stepping_piece.rb"
 
 class Display
 
@@ -19,13 +21,18 @@ class Display
       each_row.map.with_index do |el, i2|
         if el.class == NullPiece &&
         i1 == row && i2 == col
-          print "N".colorize(:background => :light_blue)
-        elsif el.class == Piece && i1 == row && i2 == col
-          print "P".colorize(:background =>:light_blue)
+          print "-".colorize(:background =>:blue)
+        elsif el.class == Bishop && i1 == row && i2 == col
+          print el.value.colorize(:background =>:blue)
+        elsif el.class == Rook && i1 == row && i2 == col
+          print el.value.colorize(:background =>:blue)elsif el.class == Knight && i1 == row && i2 == col
+            print el.value.colorize(:background =>:blue)elsif el.class == King && i1 == row && i2 == col
+              print el.value.colorize(:background =>:blue)elsif el.class == Queen && i1 == row && i2 == col
+                print el.value.colorize(:background =>:blue)
         elsif el.class == NullPiece
-          print "N".colorize(:red)
+          print "-".colorize(:red)
         else
-          print "P".colorize(:red)
+          print el.value.colorize(:red)
         end
       end
       puts

@@ -1,6 +1,8 @@
 require_relative "cursor.rb"
 require_relative "board.rb"
 require_relative "display.rb"
+require_relative "sliding_piece.rb"
+require_relative "stepping_piece.rb"
 
 class Game
   attr_reader :display, :board
@@ -16,7 +18,8 @@ class Game
         system('clear')
         display.render
         display.cursor.get_input
-      rescue
+      rescue Errorr => e
+        puts e
         retry
       end
     end

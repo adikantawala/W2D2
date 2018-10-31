@@ -6,30 +6,40 @@ end
 class InvalidEndPos < StandardError
 end
 
-NULL = NullPiece.new
+
 
 class Board
   attr_reader :grid
 
+  # @null = NullPiece.instance
 
   def initialize(grid = Array.new(8) { Array.new(8) })
     @grid = grid
+    @null =  NullPiece.instance
   end
 
   def populate_board
     # debugger
-    (@grid[0..1] + @grid[6..7]).each do |row|
-      (0...row.length).each do |i|
-        row[i] = Piece.new
+    first_row =[Rook, Knight, Bishop, Queen, King, Bishop, Knight, Rook]
+
+
+    # b1 = Bishop.new([1,1], :white, self)
+    # temp =
+    # @grid[0..1] + @grid[6..7]
+    ([0,1,6,7]).each do |row|
+      (0...8).each do |i|
+        @grid[row][i] = first_row[i].new([row,i],:White, self)
       end
     end
 
     (@grid[2..5]).each do |row|
       (0...row.length).each do |i|
-        row[i] = NULL
+        row[i] = @null
       end
     end
 
+
+    # add_piece(b1,[1,1])
   end
 
   def valid_pos?(pos)

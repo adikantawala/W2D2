@@ -94,7 +94,10 @@ class Cursor
     row = row + diff[0]
     col = col + diff[1]
     temp = [row,col]
-    raise "not valid position" if !board.valid_pos?(temp)
+    raise Errorr.new("error") if !board.valid_pos?(temp)
     @cursor_pos = [row, col]
   end
+end
+
+class Errorr < StandardError
 end
